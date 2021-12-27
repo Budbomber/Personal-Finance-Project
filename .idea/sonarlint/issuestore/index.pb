@@ -53,5 +53,11 @@ j
 :.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml,8\5\858474d8d215ec25f84b3be6f80418553ae8d1df
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+l
+<src/main/java/com/example/personalfinanceproject/Income.java,6\7\679744ae828f85c9591a41f95dd2309538ab422d
+k
+;src/main/java/com/example/personalfinanceproject/Bills.java,e\1\e1c45fae52eee0eefffc0b4181d8a309f6f8b8d6
