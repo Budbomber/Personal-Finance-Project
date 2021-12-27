@@ -17,6 +17,7 @@ import java.util.List;
 
 
 public class FinanceMainController {
+
     @FXML
     private TextField totalIncomeField;
     @FXML
@@ -30,7 +31,7 @@ public class FinanceMainController {
     @FXML
     private TextField addIncomeAmountField;
     @FXML
-    private Button removeIncome;
+    private Button removeIncomeButton;
     @FXML
     private TextField removeIncomeNameField;
     @FXML
@@ -58,8 +59,10 @@ public class FinanceMainController {
     @FXML
     private TextField totalBillsField;
     @FXML
+    private TextField fundsLeftAfterDeduction;
+    @FXML
 
-
+    /* Tables view, seen on GUI */
     private TableView<Bills> billsTableView;
     private TableView<Income> incomeTableView;
 
@@ -69,12 +72,15 @@ public class FinanceMainController {
     private ObservableList<Income> providerResults = FXCollections.observableArrayList(providerData);
     private final ObservableList<Bills> masterData = FXCollections.observableArrayList();
     private ObservableList<Bills> billResults = FXCollections.observableArrayList();
+    private int totalIncomeFieldHasValue;
+    private int totalBillsFieldHasValue;
+    private static final String IS_NUMERIC = "[+-]?\\d*(\\.\\d+)?";
 
 
     public FinanceMainController() { /* Adding some example bills and income */
         masterData.add(new Bills("Virgin Media", "50"));
         masterData.add(new Bills("Car insurance", "33"));
-        masterData.add(new Bills("vet fees", "10000"));
+        masterData.add(new Bills("vet fees", "850"));
 
         providerData.add(new Income("Hertz", "1500"));
         providerData.add(new Income("Dog", "900"));
@@ -88,13 +94,14 @@ public class FinanceMainController {
         setSearch();
         initBillsTable();
         initIncomeTable();
+        billDeduction();
     }
 
     public void setActions() {
         addBillButton.setOnAction(actionEvent -> addBill());
         addIncomeButton.setOnAction(actionEvent -> addIncome());
         removeBillButton.setOnAction(actionEvent -> removeBill());
-        removeIncome.setOnAction(actionEvent -> removeIncome());
+        removeIncomeButton.setOnAction(actionEvent -> removeIncome());
         clearBillsButton.setOnAction(actionEvent -> clearBillsTable());
         clearIncomeButton.setOnAction(actionEvent -> clearIncomeTable());
     }
@@ -102,7 +109,6 @@ public class FinanceMainController {
     public void setSearch() {
         searchButton.setText("Search");
         searchButton.setOnAction(actionEvent -> loadBillData());
-        searchButton.setStyle("-fx-background-color: #457ecd; -fx-text-fill: #ffffff;");
         searchField.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 loadBillData();
@@ -116,90 +122,113 @@ public class FinanceMainController {
         int i;
         for (i = 0; i < incomeTableView.getItems().size(); i++) {
             String valueOf = incomeTableView.getItems().get(i).getAmount();
-
             total = total + Integer.parseInt(valueOf);
-
             System.out.println(valueOf);
         }
+        totalIncomeFieldHasValue = total;
         totalIncomeField.setText(String.valueOf(total));
 
     }
+
     public void totalBills() {
 
         int billTotal = 0;
         int i;
         for (i = 0; i < billsTableView.getItems().size(); i++) {
             String valueOf = billsTableView.getItems().get(i).getAmount();
-
             billTotal = billTotal + Integer.parseInt(valueOf);
-
             System.out.println(valueOf);
         }
+        totalBillsFieldHasValue = billTotal;
         totalBillsField.setText(String.valueOf(billTotal));
 
     }
 
+    public void billDeduction() {
+
+        int totalDeduction = totalIncomeFieldHasValue - totalBillsFieldHasValue;
+        fundsLeftAfterDeduction.setText(String.valueOf(totalDeduction));
+    }
 
 
     public void removeBill() {
+        boolean isANumber = removeBillAmountField.getText().matches(IS_NUMERIC);
         String removeBillName = removeBillNameField.getText().toLowerCase();
         String removeBillAmount = removeBillAmountField.getText();
 
-        if (removeBillName.isEmpty() || removeBillAmount.isEmpty()) {
+        if (removeIncomeNameField.getText().isEmpty() || removeBillAmount.isEmpty()) {
             System.out.println("Error, please check inputs.");
-        } else {
-            masterData.removeIf(value -> value.getBills().toLowerCase().equals(removeBillName));
-            masterData.removeIf(value -> value.getAmount().toLowerCase().equals(removeBillAmount));
+        } else if (!removeBillName.isEmpty() && isANumber) {
+            masterData.removeIf(value -> value.getBills().toLowerCase().equals(removeBillName) && value.getAmount().toLowerCase().equals(removeBillAmount));
             loadBillData();
         }
-
     }
 
+
     public void removeIncome() {
+        boolean isANumber = removeIncomeAmountField.getText().matches(IS_NUMERIC);
         String removeIncomeName = removeIncomeNameField.getText().toLowerCase();
         String removeIncomeAmount = removeIncomeAmountField.getText().toLowerCase();
 
-        if (removeIncomeName.isEmpty() || removeIncomeAmount.isEmpty()) {
+        if (removeIncomeNameField.getText().isEmpty() || removeIncomeAmount.isEmpty()) {
             System.out.println("Error, please check inputs.");
-        } else {
-            providerData.removeIf(value -> value.getProvider().toLowerCase().equals(removeIncomeName));
-            providerData.removeIf(value -> value.getProvider().toLowerCase().equals(removeIncomeAmount));
-            loadIncomeData();
-        }
 
+        } else if (!removeIncomeName.isEmpty() && isANumber) {
+            providerData.removeIf(value -> value.getProvider().toLowerCase().equals(removeIncomeName) && value.getAmount().toLowerCase().equals(removeIncomeAmount));
+            loadIncomeData();
+
+        }
     }
 
 
     public void addBill() {
-        if (addBillNameField.getText().isEmpty() || addBillAmountField.getText().isEmpty()) {
-            System.out.println("Error, Please check inputs");
-            //TODO Add a better method
+        boolean amountIsNumeric = addBillAmountField.getText().matches(IS_NUMERIC);
 
-        } else {
+        if (addBillNameField.getText().isEmpty() || addBillAmountField.getText().isEmpty()) {
+            System.out.println("Error, Please check your inputs.");
+
+        } else if (!addBillNameField.getText().isEmpty() && amountIsNumeric) {
             masterData.add(new Bills(addBillNameField.getText(), addBillAmountField.getText()));
             loadBillData();
-        }
 
+        }
     }
 
+
     public void addIncome() {
+        boolean amountIsNumeric = addIncomeAmountField.getText().matches(IS_NUMERIC);
+
         if (addIncomeNameField.getText().isEmpty() || addIncomeAmountField.getText().isEmpty()) {
             System.out.println("Error Adding income value");
-            //TODO Add a better method
-        } else {
+
+        } else if (!addIncomeNameField.getText().isEmpty() && amountIsNumeric) {
             providerData.add(new Income(addIncomeNameField.getText(), addIncomeAmountField.getText()));
+            loadIncomeData();
+
+        }
+    }
+
+
+    public void clearIncomeTable() {
+
+        if (providerData.isEmpty()) {
+            System.out.println("Error, Nothing to clear");
+        } else {
+            providerData.clear();
             loadIncomeData();
         }
 
     }
-    public void clearIncomeTable() {
-        providerData.clear();
-        loadIncomeData();
-    }
 
     public void clearBillsTable() {
-        masterData.clear();
-        loadBillData();
+
+        if (masterData.isEmpty()) {
+            System.out.println("Error, Nothing to clear");
+        } else {
+            masterData.clear();
+            loadBillData();
+        }
+
     }
 
 
@@ -220,6 +249,7 @@ public class FinanceMainController {
         billsTableViewContainer.getChildren().add(billsTableView);
         billsTableView.setEditable(true);
         totalBills();
+        billDeduction();
     }
 
     private void initIncomeTable() {
@@ -239,6 +269,7 @@ public class FinanceMainController {
         incomeTableViewContainer.getChildren().add(incomeTableView);
         billsTableView.setEditable(true);
         totalIncome();
+        billDeduction();
     }
 
 
@@ -262,6 +293,7 @@ public class FinanceMainController {
             providerResults = incomeTask.getValue();
             incomeTableView.setItems(FXCollections.observableList(providerResults));
             totalIncome();
+            billDeduction();
         });
 
         Thread th1 = new Thread(incomeTask);
@@ -290,6 +322,7 @@ public class FinanceMainController {
             billResults = billTask.getValue();
             billsTableView.setItems(FXCollections.observableList(billResults));
             totalBills();
+            billDeduction();
         });
 
         Thread th = new Thread(billTask);

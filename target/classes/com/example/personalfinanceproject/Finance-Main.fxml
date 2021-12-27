@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.Double?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -12,10 +14,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="855.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.personalfinanceproject.FinanceMainController">
-    <MenuBar prefHeight="2.0" prefWidth="832.0" VBox.vgrow="NEVER">
+    <MenuBar prefHeight="2.0" prefWidth="832.0" style="-fx-background-color: #457ecd;" VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" text="New" />
             <MenuItem mnemonicParsing="false" text="Open…" />
@@ -64,71 +67,82 @@
                     <Font size="10.0" />
                 </font>
             </TextField>
-            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="46.0">
+            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="46.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;">
                 <font>
                     <Font size="10.0" />
                 </font>
             </Button>
         </HBox>
-          <VBox fx:id="incomeTableViewContainer" fillWidth="false" layoutX="14.0" layoutY="72.0" prefHeight="343.0" prefWidth="258.0" />
-          <VBox fx:id="billsTableViewContainer" fillWidth="false" layoutX="14.0" layoutY="431.0" prefHeight="343.0" prefWidth="258.0" />
-      <AnchorPane id="IncomeControlButtons" layoutX="281.0" layoutY="114.0" prefHeight="260.0" prefWidth="200.0">
-         <children>
-                <Button fx:id="addIncomeButton" layoutX="65.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Add Income">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
+          <VBox fx:id="incomeTableViewContainer" alignment="CENTER" fillWidth="false" layoutX="14.0" layoutY="72.0" prefHeight="343.0" prefWidth="252.0" style="-fx-border-color: #457ecd;" />
+          <VBox fx:id="billsTableViewContainer" alignment="CENTER" fillWidth="false" layoutX="14.0" layoutY="431.0" prefHeight="343.0" prefWidth="252.0" style="-fx-border-color: #457ecd;" />
+        <AnchorPane id="IncomeControlButtons" layoutX="281.0" layoutY="114.0" prefHeight="260.0" prefWidth="200.0" style="-fx-border-color: #457ecd;">
+            <Button fx:id="addIncomeButton" layoutX="65.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Add Income">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Button>
             <Label layoutX="95.0" layoutY="54.0" text="A:" />
             <Label layoutX="8.0" layoutY="54.0" text="N:" />
-                <Button fx:id="removeIncome" layoutX="61.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Remove Income">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
-                <TextField fx:id="removeIncomeNameField" layoutX="19.0" layoutY="117.0" prefHeight="25.0" prefWidth="71.0" />
+            <Button fx:id="removeIncomeButton" layoutX="61.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Remove Income">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Button>
+            <TextField fx:id="removeIncomeNameField" layoutX="19.0" layoutY="117.0" prefHeight="25.0" prefWidth="71.0" />
             <TextField fx:id="addIncomeAmountField" layoutX="110.0" layoutY="50.0" prefHeight="25.0" prefWidth="64.0" />
-                <TextField fx:id="addIncomeNameField" layoutX="19.0" layoutY="50.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="addIncomeNameField" layoutX="19.0" layoutY="50.0" prefHeight="25.0" prefWidth="71.0" />
             <Label layoutX="8.0" layoutY="121.0" text="N:" />
             <TextField fx:id="removeIncomeAmountField" layoutX="110.0" layoutY="117.0" prefHeight="25.0" prefWidth="77.0" />
             <Label layoutX="95.0" layoutY="122.0" text="A:" />
-            <Button fx:id="clearIncomeButton" layoutX="61.0" layoutY="158.0" mnemonicParsing="false" text="Clear Income">
-               <font>
-                  <Font size="11.0" />
-               </font>
+            <Button fx:id="clearIncomeButton" layoutX="61.0" layoutY="158.0" mnemonicParsing="false" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Clear Income">
+                <font>
+                    <Font size="11.0" />
+                </font>
             </Button>
             <TextField fx:id="totalIncomeField" editable="false" layoutX="21.0" layoutY="212.0" />
             <Label layoutX="61.0" layoutY="195.0" text="Total Income" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="281.0" layoutY="470.0" prefHeight="266.0" prefWidth="200.0">
-         <children>
-                <Button fx:id="addBillButton" layoutX="68.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Add Bill">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
-                <TextField fx:id="addBillNameField" layoutX="29.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" />
+        </AnchorPane>
+        <AnchorPane layoutX="281.0" layoutY="470.0" prefHeight="266.0" prefWidth="200.0" style="-fx-border-color: #457ecd;">
+            <Button fx:id="addBillButton" layoutX="68.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Add Bill">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Button>
+            <TextField fx:id="addBillNameField" layoutX="29.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" />
             <TextField fx:id="addBillAmountField" layoutX="115.0" layoutY="48.0" prefHeight="25.0" prefWidth="71.0" />
             <Label layoutX="14.0" layoutY="53.0" text="N:" />
             <Label layoutX="100.0" layoutY="51.0" text="A:" />
-                <Button fx:id="removeBillButton" layoutX="65.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Remove Bill">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
+            <Button fx:id="removeBillButton" layoutX="65.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Remove Bill">
+                <font>
+                    <Font size="10.0" />
+                </font>
+            </Button>
             <TextField fx:id="removeBillAmountField" layoutX="115.0" layoutY="121.0" prefHeight="25.0" prefWidth="71.0" />
-                <TextField fx:id="removeBillNameField" layoutX="27.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="removeBillNameField" layoutX="27.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" />
             <Label layoutX="100.0" layoutY="125.0" text="A:" />
             <Label layoutX="11.0" layoutY="127.0" text="N:" />
-            <Button fx:id="clearBillsButton" layoutX="51.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Clear Bills ">
-               <font>
-                  <Font size="11.0" />
-               </font>
+            <Button fx:id="clearBillsButton" layoutX="51.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Clear Bills ">
+                <font>
+                    <Font size="11.0" />
+                </font>
             </Button>
             <TextField fx:id="totalBillsField" editable="false" layoutX="26.0" layoutY="227.0" />
             <Label layoutX="64.0" layoutY="210.0" prefHeight="0.0" prefWidth="69.0" text="Bills Total" />
-         </children>
-      </AnchorPane>
+        </AnchorPane>
+      <Separator layoutX="281.0" layoutY="415.0" prefHeight="17.0" prefWidth="200.0" style="-fx-background-color: #457ecd;" />
+      <Polygon fill="#457ecd" layoutX="491.0" layoutY="434.0" rotate="90.0" scaleX="0.3" scaleY="0.3" scaleZ="0.2" stroke="BLACK" strokeType="INSIDE">
+        <points>
+          <Double fx:value="-50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="0.0" />
+          <Double fx:value="-60.0" />
+        </points>
+      </Polygon>
+      <Label layoutX="338.0" layoutY="392.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Total Income -&gt;" />
+      <Label layoutX="320.0" layoutY="439.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Total Bills to Deduct -&gt;" />
+      <TextField fx:id="fundsLeftAfterDeduction" editable="false" layoutX="528.0" layoutY="411.0" style="-fx-border-color: #457ecd;" />
+      <Label layoutX="534.0" layoutY="392.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Funds left after deduction" />
     </AnchorPane>
 </VBox>
