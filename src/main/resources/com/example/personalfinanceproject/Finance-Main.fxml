@@ -2,12 +2,14 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Glow?>
@@ -50,8 +52,8 @@
         </Menu>
     </MenuBar>
     <AnchorPane VBox.vgrow="ALWAYS">
-        <HBox layoutX="14.0" layoutY="23.0" prefHeight="38.0" prefWidth="482.0">
-            <Label alignment="CENTER" blendMode="SRC_ATOP" graphicTextGap="2.0" prefHeight="23.0" prefWidth="116.0" style="&#10;" text="Search Text:" textFill="#141313">
+        <HBox layoutX="250.0" layoutY="34.0" prefHeight="38.0" prefWidth="482.0">
+            <Label alignment="CENTER" blendMode="SRC_ATOP" graphicTextGap="2.0" prefHeight="27.0" prefWidth="116.0" style="-fx-background-color: #457ecd; -fx-border-color: #457ecd; -fx-text-fill: #ffffff;" text="Search Text:" textFill="#141313">
                 <font>
                     <Font name="Arial" size="14.0" />
                 </font>
@@ -59,15 +61,12 @@
                     <Glow />
                 </effect>
             </Label>
-            <TextField fx:id="searchField" alignment="BASELINE_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="258.0">
+            <TextField fx:id="searchField" alignment="BASELINE_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="258.0" style="-fx-border-color: #457ecd;">
                 <effect>
                     <ColorAdjust brightness="-0.13" />
                 </effect>
-                <font>
-                    <Font size="10.0" />
-                </font>
             </TextField>
-            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="46.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;">
+            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;">
                 <font>
                     <Font size="10.0" />
                 </font>
@@ -88,19 +87,24 @@
                     <Font size="10.0" />
                 </font>
             </Button>
-            <TextField fx:id="removeIncomeNameField" layoutX="19.0" layoutY="117.0" prefHeight="25.0" prefWidth="71.0" />
-            <TextField fx:id="addIncomeAmountField" layoutX="110.0" layoutY="50.0" prefHeight="25.0" prefWidth="64.0" />
-            <TextField fx:id="addIncomeNameField" layoutX="19.0" layoutY="50.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="removeIncomeNameField" layoutX="19.0" layoutY="117.0" prefHeight="25.0" prefWidth="71.0" style="-fx-border-color: #457ecd;" />
+            <TextField fx:id="addIncomeAmountField" layoutX="110.0" layoutY="50.0" prefHeight="25.0" prefWidth="64.0" style="-fx-border-color: #457ecd;" />
+            <TextField fx:id="addIncomeNameField" layoutX="19.0" layoutY="50.0" prefHeight="25.0" prefWidth="71.0" style="-fx-border-color: #457ecd;" />
             <Label layoutX="8.0" layoutY="121.0" text="N:" />
-            <TextField fx:id="removeIncomeAmountField" layoutX="110.0" layoutY="117.0" prefHeight="25.0" prefWidth="77.0" />
+            <TextField fx:id="removeIncomeAmountField" layoutX="110.0" layoutY="117.0" prefHeight="25.0" prefWidth="77.0" style="-fx-border-color: #457ecd;" />
             <Label layoutX="95.0" layoutY="122.0" text="A:" />
             <Button fx:id="clearIncomeButton" layoutX="61.0" layoutY="158.0" mnemonicParsing="false" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Clear Income">
                 <font>
                     <Font size="11.0" />
                 </font>
             </Button>
-            <TextField fx:id="totalIncomeField" editable="false" layoutX="21.0" layoutY="212.0" />
+            <TextField fx:id="totalIncomeField" alignment="CENTER" editable="false" layoutX="21.0" layoutY="212.0" style="-fx-alignment: Center; -fx-border-color: #457ecd;" />
             <Label layoutX="61.0" layoutY="195.0" text="Total Income" />
+         <Label layoutX="65.0" layoutY="215.0" text="£">
+            <font>
+               <Font size="13.0" />
+            </font>
+         </Label>
         </AnchorPane>
         <AnchorPane layoutX="281.0" layoutY="470.0" prefHeight="266.0" prefWidth="200.0" style="-fx-border-color: #457ecd;">
             <Button fx:id="addBillButton" layoutX="68.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Add Bill">
@@ -108,8 +112,8 @@
                     <Font size="10.0" />
                 </font>
             </Button>
-            <TextField fx:id="addBillNameField" layoutX="29.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" />
-            <TextField fx:id="addBillAmountField" layoutX="115.0" layoutY="48.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="addBillNameField" layoutX="29.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" style="-fx-border-color: #457ecd;" />
+            <TextField fx:id="addBillAmountField" layoutX="115.0" layoutY="48.0" prefHeight="25.0" prefWidth="71.0" style="-fx-border-color: #457ecd;" />
             <Label layoutX="14.0" layoutY="53.0" text="N:" />
             <Label layoutX="100.0" layoutY="51.0" text="A:" />
             <Button fx:id="removeBillButton" layoutX="65.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Remove Bill">
@@ -117,8 +121,8 @@
                     <Font size="10.0" />
                 </font>
             </Button>
-            <TextField fx:id="removeBillAmountField" layoutX="115.0" layoutY="121.0" prefHeight="25.0" prefWidth="71.0" />
-            <TextField fx:id="removeBillNameField" layoutX="27.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="removeBillAmountField" layoutX="115.0" layoutY="121.0" prefHeight="25.0" prefWidth="71.0" style="-fx-border-color: #457ecd;" />
+            <TextField fx:id="removeBillNameField" layoutX="27.0" layoutY="120.0" prefHeight="25.0" prefWidth="71.0" style="-fx-border-color: #457ecd;" />
             <Label layoutX="100.0" layoutY="125.0" text="A:" />
             <Label layoutX="11.0" layoutY="127.0" text="N:" />
             <Button fx:id="clearBillsButton" layoutX="51.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Clear Bills ">
@@ -126,8 +130,13 @@
                     <Font size="11.0" />
                 </font>
             </Button>
-            <TextField fx:id="totalBillsField" editable="false" layoutX="26.0" layoutY="227.0" />
-            <Label layoutX="64.0" layoutY="210.0" prefHeight="0.0" prefWidth="69.0" text="Bills Total" />
+            <TextField fx:id="totalBillsField" alignment="CENTER" editable="false" layoutX="26.0" layoutY="227.0" style="-fx-border-color: #457ecd;" />
+            <Label layoutX="71.0" layoutY="210.0" prefHeight="0.0" prefWidth="69.0" text="Bills Total" />
+         <Label layoutX="79.0" layoutY="230.0" text="£">
+            <font>
+               <Font size="13.0" />
+            </font>
+         </Label>
         </AnchorPane>
       <Separator layoutX="281.0" layoutY="415.0" prefHeight="17.0" prefWidth="200.0" style="-fx-background-color: #457ecd;" />
       <Polygon fill="#457ecd" layoutX="491.0" layoutY="434.0" rotate="90.0" scaleX="0.3" scaleY="0.3" scaleZ="0.2" stroke="BLACK" strokeType="INSIDE">
@@ -142,7 +151,38 @@
       </Polygon>
       <Label layoutX="338.0" layoutY="392.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Total Income -&gt;" />
       <Label layoutX="320.0" layoutY="439.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Total Bills to Deduct -&gt;" />
-      <TextField fx:id="fundsLeftAfterDeduction" editable="false" layoutX="528.0" layoutY="411.0" style="-fx-border-color: #457ecd;" />
-      <Label layoutX="534.0" layoutY="392.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Funds left after deduction" />
+      <TextField fx:id="fundsLeftAfterDeduction" alignment="CENTER" editable="false" layoutX="536.0" layoutY="410.0" prefHeight="27.0" prefWidth="145.0" style="-fx-border-color: #457ecd;" />
+      <Label layoutX="536.0" layoutY="383.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Funds after deduction">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="576.0" layoutY="415.0" text="£">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="calculateBudget" layoutX="541.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Calculate budget:" />
+      <Label fx:id="dateTime" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="2.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Time date here" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker id="payDate" fx:id="datePicker" layoutX="537.0" layoutY="316.0" prefHeight="27.0" prefWidth="151.0" style="-fx-border-color: #457ecd;" />
+      <Label layoutX="536.0" layoutY="290.0" prefHeight="19.0" prefWidth="106.0" style="-fx-background-color: #457ecd; -fx-text-fill: #ffffff;" text="Set next pay date.">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <TextField fx:id="daysToNextPayField" editable="false" layoutX="641.0" layoutY="349.0" prefHeight="25.0" prefWidth="43.0" />
+      <Label layoutX="539.0" layoutY="352.0" prefHeight="19.0" prefWidth="100.0" style="-fx-background-color: #457fcd; -fx-text-fill: #ffffff;" text="Days to next Pay:">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="dailySpend" editable="false" layoutX="732.0" layoutY="283.0" prefHeight="90.0" prefWidth="341.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="weeklySpend" editable="false" layoutX="732.0" layoutY="380.0" prefHeight="90.0" prefWidth="341.0" />
     </AnchorPane>
 </VBox>
